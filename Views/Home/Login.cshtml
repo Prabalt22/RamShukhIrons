@@ -1,0 +1,66 @@
+@model MvcApp.Models.Login
+
+@{
+    @* Layout = null; *@
+    ViewData["title"] = "Login";
+}
+
+<style>
+     
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    form {
+        width: 300px;
+        margin: 100px auto;
+        padding: 25px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #218838;
+    }
+</style>
+
+<form asp-controller="Home" asp-action="Login" method="post">
+    <label for="Email">Email</label>
+    <input type="text" asp-for = "Email">
+    <span asp-validation-for="Email" style="color: red;"></span><br><br>
+    <label for="Password">Password</label>
+    <input type="password" asp-for="Password" name="Password">
+    <span asp-validation-for="Password" style="color: red;"></span><br><br>
+    <input type="submit" value="submit">
+</form>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>

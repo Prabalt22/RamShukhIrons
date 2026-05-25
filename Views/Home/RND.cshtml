@@ -1,0 +1,183 @@
+<style>
+
+body {
+    margin: 0;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 30px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+header p {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 30px;
+}
+
+.card {
+    background: white;
+    color: black;
+    border-radius: 16px;
+    padding: 20px;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #2a5298;
+}
+
+.card ul {
+    padding-left: 20px;
+}
+
+.goal {
+    margin-top: 10px;
+    font-weight: bold;
+    color: green;
+}
+
+.icon {
+    font-size: 28px;
+}
+</style>
+
+<header>
+    <h1>🔬 Iron & Steel R&D</h1>
+    <p>Innovation • Efficiency • Sustainability</p>
+</header>
+
+<div class="container" id="cardContainer"></div>
+
+
+<script>
+    const data = [
+    {
+        icon: "🔬",
+        title: "New Material Development",
+        points: [
+            "High-strength steel (construction, automotive)",
+            "Lightweight alloys",
+            "Corrosion-resistant steel",
+            "Heat-resistant steel"
+        ],
+        goal: "Better performance + durability"
+    },
+    {
+        icon: "⚙️",
+        title: "Process Improvement",
+        points: [
+            "Blast furnace optimization",
+            "Electric arc furnace efficiency",
+            "Continuous casting improvements",
+            "Reducing defects"
+        ],
+        goal: "Reduce cost • Increase productivity • Improve quality"
+    },
+    {
+        icon: "♻️",
+        title: "Sustainability & Green Steel",
+        points: [
+            "Carbon emission reduction",
+            "Hydrogen-based steelmaking",
+            "Energy-efficient furnaces",
+            "Scrap recycling"
+        ],
+        goal: "Eco-friendly production"
+    },
+    {
+        icon: "🧪",
+        title: "Quality Testing & Analysis",
+        points: [
+            "Chemical analysis",
+            "Mechanical testing",
+            "Microstructure study",
+            "Failure analysis"
+        ],
+        goal: "Meet ISO & ASTM standards"
+    },
+    {
+        icon: "🏗️",
+        title: "Application-Based Innovation",
+        points: [
+            "Automotive steel",
+            "Construction steel",
+            "Railway rails",
+            "Oil & gas pipes"
+        ]
+    },
+    {
+        icon: "🤖",
+        title: "Automation & Digitalization",
+        points: [
+            "AI defect prediction",
+            "Smart sensors",
+            "IoT monitoring",
+            "Digital twin systems"
+        ],
+        goal: "Smart factories"
+    },
+    {
+        icon: "🔥",
+        title: "Energy Optimization",
+        points: [
+            "Heat recovery systems",
+            "Fuel efficiency",
+            "Reduce furnace wastage"
+        ],
+        goal: "Lower operational cost"
+    },
+    {
+        icon: "🧰",
+        title: "Product Development",
+        points: [
+            "Sheets, coils, rods",
+            "Special alloys",
+            "Custom steel grades"
+        ]
+    }
+];
+
+const container = document.getElementById("cardContainer");
+
+data.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    let listItems = "";
+    item.points.forEach(p => {
+        listItems += `<li>${p}</li>`;
+    });
+
+    card.innerHTML = `
+        <div class="icon">${item.icon}</div>
+        <h3>${item.title}</h3>
+        <ul>${listItems}</ul>
+        ${item.goal ? `<div class="goal">👉 ${item.goal}</div>` : ""}
+    `;
+
+    container.appendChild(card);
+});
+</script>

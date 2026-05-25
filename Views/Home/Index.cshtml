@@ -1,0 +1,224 @@
+﻿@model List<MvcApp.Models.Iron>
+
+    @{
+    ViewData["Title"] = "Home Page";
+    }
+
+
+
+    <style>
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+            .hero h1 {
+                font-size: 42px;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+
+            .hero p {
+                color: #666;
+                font-size: 16px;
+            }
+
+        /* SECTION CARD */
+        .section-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        /* GRID */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* IMAGE */
+        .img-box img {
+            width: 100%;
+            border-radius: 12px;
+            transition: 0.3s ease;
+        }
+
+            .img-box img:hover {
+                transform: scale(1.02);
+            }
+
+        /* TEXT */
+        .text-muted {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* CARD GRID */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: 0.3s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-6px);
+            }
+
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+            .card-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .card-body {
+            padding: 16px;
+        }
+
+            .card-body h2 {
+                font-size: 20px;
+                margin-bottom: 6px;
+            }
+
+        .brand {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 8px;
+        }
+
+        .desc {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #198754;
+            margin-bottom: 12px;
+        }
+
+        .custom_btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #222;
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .custom_btn:hover {
+                background: #ff6b00;
+            }
+
+        canvas {
+            max-width: 100%;
+        }
+    </style>
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Arvind Irons</h1>
+        <p>Modern insights into India's Iron & Steel Industry</p>
+    </div>
+
+    <!-- CHART -->
+    <div class="section-card">
+        <h3>📊 Industry Statistics</h3>
+        <canvas id="steelChart"></canvas>
+    </div>
+
+    <!-- INFO SECTION -->
+    <div class="section-card grid-2">
+        <div class="img-box">
+            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230508124249/Iron-and-Steel-Industry.webp"
+                 alt="Steel Industry" />
+        </div>
+
+        <div>
+            <h3>📍 Industry Distribution</h3>
+            <p class="text-muted">
+                India's iron and steel industry is concentrated in regions such as
+                <strong>Jamshedpur, Bokaro, Durgapur, Rourkela, and Bhilai</strong>.
+                These hubs are located near raw materials like iron ore and coal.
+                Major organizations like <strong>SAIL</strong>, <strong>Tata Steel</strong>,
+                and <strong>RINL</strong> form the backbone of the sector.
+            </p>
+        </div>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div class="product-grid">
+        @foreach (var iron in Model)
+    {
+        <div class="card">
+
+            <div class="card-img">
+                <img src="~/images/@iron.ImageData" alt="@iron.IronName" />
+            </div>
+
+            <div class="card-body">
+                <h2>@iron.IronName</h2>
+
+                <div class="brand">Brand: @iron.Brand</div>
+
+                <div class="desc">@iron.IronDescription</div>
+
+                <div class="price">₹@iron.Price</div>
+
+                <button class="custom_btn">View Details</button>
+            </div>
+
+        </div>
+    }
+    </div>
+
+    <!-- CHART -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ctx = document.getElementById('steelChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Crude Steel', 'Finished Steel', 'Market Size', 'Capacity Target', 'Private Share'],
+                datasets: [{
+                    label: 'Industry Metrics',
+                    data: [153.6, 146.8, 182, 300, 84],
+                    backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545', '#6f42c1'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Iron & Steel Industry Overview'
+                    }
+                }
+            }
+        });
+    </script>

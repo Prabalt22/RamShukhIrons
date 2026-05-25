@@ -1,0 +1,27 @@
+@using Microsoft.Extensions.ObjectPool
+@model List<MvcApp.Models.NewsItem>
+
+<style>
+    body {
+        margin: 0;
+        padding: 30px;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #1e3c72, #2a5298);
+        color: white;
+    }
+</style>
+
+@foreach (var item in Model)
+{
+    <div>
+        <h3>@item.Title</h3>
+
+        <a href="@item.Link" target="_blank">
+            Read More
+        </a>
+
+        <p>@item.PubDate</p>
+
+        <hr>
+    </div>
+}

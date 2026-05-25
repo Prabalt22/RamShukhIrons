@@ -1,0 +1,66 @@
+@model MvcApp.Models.Blog
+@{
+    ViewData["Title"] = "Add Blog";
+}
+<style>
+    
+</style>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+
+            <div class="card shadow-lg border-0 rounded-4">
+                
+                <!-- Header -->
+                <div class="card-header bg-dark text-white text-center rounded-top-4">
+                    <h4 class="mb-0">✍️ Share Your Thoughts</h4>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body p-4">
+
+                    <form asp-controller="Home" asp-action="AddBlog" method="post">
+                     <div class="form-floating mb-3">
+                            <input type="text" 
+                                   name="Title" 
+                                   class="form-control" 
+                                   id="titleInput"
+                                   placeholder="Title" required>
+                            <label for="titleInput">Blog Title</label>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="form-floating mb-3">
+                            <textarea name="Content" 
+                                      class="form-control" 
+                                      id="contentInput"
+                                      placeholder="Write something..." 
+                                      style="height: 150px" required></textarea>
+                            <label for="contentInput">Write your thoughts...</label>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-3">
+                                🚀 Publish Blog
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer text-center text-muted small">
+                    Express yourself freely 💡
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
