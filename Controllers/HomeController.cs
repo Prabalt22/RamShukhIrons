@@ -217,6 +217,38 @@ public class HomeController : Controller
     {
         return View();
     }
+
+    public IActionResult View_Details(int Id)
+    {
+       Iron iron = null;
+        try
+        {
+            conn = new SqlConnection(connectionString);
+            cmd = new SqlCommand($"select * from Iron where Id = @Id", conn);
+            cmd.Parameters.AddWithValue("@Id", Id);
+            conn.Open();
+            dr = cmd.ExecuteReader();
+            if (dr != null && dr.Read())
+            {
+                iron = new Iron(){
+                
+                Id = (int)dr["Id"],
+                IronName = dr["IronName"].ToString(),
+                IronDescription = dr["IronDescription"].ToString(),
+                Price = (decimal)dr["Price"],
+                Brand = dr["Brand"].ToString(),
+                ImageData = dr["ImageData"] != DBNull.Value ? dr["ImageData"].ToString() : null,
+                };
+            } 
+        }
+        finally
+        {
+            conn.Close();
+        }
+
+        return View(iron);
+    }
+
     public IActionResult Privacy()
     {
         return View();

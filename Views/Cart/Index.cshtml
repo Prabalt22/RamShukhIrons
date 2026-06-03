@@ -1,0 +1,59 @@
+@model List<MvcApp.Models.CartItem>
+
+    @{
+    ViewData["Title"] = "Your Shop Cart";
+    }
+
+    <div class="container mt-4">
+        <h2>?? Your Shopping Cart Section</h2>
+        <p class="text-muted">Review your selected items before checking out.</p>
+
+        @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info">Your cart is currently empty.</div>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Continue Shopping</a>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Unit Price</th>
+                    <th>Quantity (MT)</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.IronName</td>
+                    <td>?@item.Price.ToString("N2")</td>
+                    <td>@item.Qty</td>
+                    <td>?@item.TotalPrice.ToString("N2")</td>
+                </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr class="fw-bold">
+                    <td colspan="3" class="text-end">Total Before Taxes:</td>
+                    <td>?@Model.Sum(x => x.TotalPrice).ToString("N2")</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="d-flex justify-content-between mt-3">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Back to Products</a>
+
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+            <button class="btn btn-success">Proceed to Final Payment</button>
+            }
+            else
+            {
+            <a asp-controller="Home" asp-action="Login" class="btn btn-warning">Log In to Checkout</a>
+            }
+        </div>
+    }
+    </div>

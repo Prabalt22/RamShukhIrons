@@ -138,4 +138,4 @@ C:\Users\IT-User\OneDrive - PrintQuote LLC\Desktop\dotnet\MvcApp\obj\Debug\net9.
 C:\Users\IT-User\OneDrive - PrintQuote LLC\Desktop\dotnet\MvcApp\obj\Debug\net9.0\ref\MvcApp.dll
 C:\Users\IT-User\OneDrive - PrintQuote LLC\Desktop\dotnet\MvcApp\obj\Debug\net9.0\compressed\jqwjk5kkst-t0vjiobbds.gz
 C:\Users\IT-User\OneDrive - PrintQuote LLC\Desktop\dotnet\MvcApp\obj\Debug\net9.0\compressed\rypohmmzfu-t0vjiobbds.gz
-C:\Users\IT-User\OneDrive - PrintQuote LLC\Desktop\dotnet\MvcApp\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\IT-User\OneDrive - PrintQuote LLC\Desktop\dotnet\MvcApp\obj\Debug\net9.0\MvcApp.sourcelink.json

@@ -1,0 +1,87 @@
+@model MvcApp.Models.Iron
+
+<!-- PRODUCT GRID -->
+
+<div class="product-grid">
+    <div class="card">
+
+
+        <form id="cartForm" asp-action="CheckOut" asp-controller="Cart" method="post">
+
+            <!-- 2. CRITICAL: Hidden fields so IronName and Price are sent to the controller -->
+            <input type="hidden" name="IronName" value="@Model.IronName" />
+            <input type="hidden" name="Price" value="@Model.Price" />
+
+
+            <div class="card-img">
+                <img src="~/images/@Model.ImageData" alt="@Model.IronName" />
+            </div>
+
+            <div class="card-body">
+                <h2>@Model.IronName</h2>
+
+                <div class="brand">Brand: @Model.Brand</div>
+
+                <div class="desc">@Model.IronDescription</div>
+
+                <div class="price">Unit Price: ₹<span id="unit-price" data-base-price="@Model.Price">@Model.Price</span></div>
+
+                <div class="cart-controls" style="margin-top: 15px;">
+                    <label for="quantity">Qty:</label>
+
+                    <input type="number" id="quantity" name="Qty" value="1" min="0.01" step="0.01" style="width: 80px; margin-right: 10px;" />Metric Ton
+        
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </div>
+
+                <!-- Dynamic Pre-Tax Total display -->
+                <div class="pre-tax-total" style="margin-top: 10px; font-weight: bold; color: #333;">
+                    Price Before Taxes: ₹<span id="total-preview">@Model.Price</span>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+
+<script>
+
+    const quantityInput = document.getElementById("quantity");
+    const unitPriceElement = document.getElementById("unit-price");
+    const totalPreviewElement = document.getElementById("total-preview");
+    const addToCartBtn = document.getElementById("add-to-cart-btn");
+
+    const basePrice = parseFloat(unitPriceElement.getAttribute("data-base-price"));
+
+    function updatePreTaxTotal() {
+        // Changed from parseInt to parseFloat to support decimals
+        let quantity = parseFloat(quantityInput.value);
+        
+        // Prevent calculation if field is empty or less than or equal to zero
+        if (isNaN(quantity) || quantity <= 0) {
+            totalPreviewElement.textContent = "0.00";
+            return;
+        }
+
+        const totalBeforeTax = basePrice * quantity;
+        
+        // Display with 2 decimal places
+        totalPreviewElement.textContent = totalBeforeTax.toFixed(2);
+    }
+
+    // Listens to any live decimal typing or step adjustment
+    quantityInput.addEventListener("input", updatePreTaxTotal);
+
+     addToCartBtn.addEventListener("click", function() {
+        const finalQty = quantityInput.value;
+        if (parseFloat(finalQty) > 0) {
+            alert(`Added ${finalQty} units to your cart.`);
+        } else {
+            alert("Please enter a valid quantity.");
+        }
+    });
+
+
+</script>
