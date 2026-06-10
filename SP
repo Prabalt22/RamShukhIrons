@@ -1,0 +1,50 @@
+create proc sp_GetIronList
+as
+begin
+Select * from Iron
+end;
+
+create proc sp_RegisterUser
+@Name varchar(30),
+@Email varchar(30),
+@Password varchar(30)
+as
+begin
+insert into Users (Name, Email, Password) Values (@Name, @Email, @Password)
+end;
+
+select * from Users
+
+
+create proc sp_LoginUser
+@Email varchar(30),
+@Password varchar(30)
+as
+begin
+select Name, Email from Users where Email = @Email and Password = @Password
+end;
+
+
+create proc sp_GetIronDetails
+@Id int
+as
+begin
+select * from Iron where Id = @Id
+end;
+
+
+
+create proc sp_AddNewBlog
+@Title varchar(50),
+@Content nvarchar(max),
+@Email varchar(25)
+as
+begin
+insert into Blogs (Title, Content, Email) values (@Title, @Content, @Email);
+end;
+
+create proc sp_GetAllComments
+as
+begin
+Select * from Blogs order by createdAt desc
+end;
